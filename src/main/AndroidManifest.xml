@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.gemini.ram_stress"
+    package="org.gemini.location_notification"
     android:versionCode="1"
     android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="1" />
+    <uses-sdk android:minSdkVersion="4" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application android:icon="@drawable/icon"
+                  android:label="Location Notification"
                  android:largeHeap="true">
-        <activity android:name=".RamStressActivity"
-            android:label="Ram Stress"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name=".RamStressActivity" />
-                <action android:name="android.intent.action.MAIN" /> 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+      <activity android:name=".HomepageActivity"
+          android:label="Location Notification"
+          android:enabled="true"
+          android:exported="true">
+        <intent-filter>
+          <action android:name=".HomepageActivity" />
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+      <activity android:name=".StartServiceActivity"
+          android:theme="@android:style/Theme.NoDisplay"
+          android:label="Start Location Notification Service"
+          android:noHistory="true"
+          android:excludeFromRecents="true"
+          android:enabled="true"
+          android:exported="true">
+        <intent-filter>
+          <action android:name=".StartServiceActivity" />
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+      <service android:name=".NotifyService" android:label="Notify Service" />
+      <receiver android:name=".Receiver"
+          android:label="Receiver"
+          android:enabled="true"
+          android:exported="true">
+        <intent-filter>
+          <action android:name="android.intent.action.BOOT_COMPLETED" />
+          <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+        </intent-filter>
+      </receiver>
     </application>
 </manifest>
