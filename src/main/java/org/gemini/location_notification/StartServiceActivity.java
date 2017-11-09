@@ -13,7 +13,6 @@ public final class StartServiceActivity extends Activity {
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    Log.i(TAG, "StartServiceActivity.onCreate");
     startService(new Intent(this, NotifyService.class));
     finish();
   }

@@ -13,7 +13,6 @@ public final class HomepageActivity extends Activity {
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    Log.i(TAG, "HomepageActivity.onCreate");
     startService(new Intent(this, NotifyService.class));
   }
 }

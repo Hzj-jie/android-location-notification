@@ -6,6 +6,7 @@ import org.gemini.shared.Debugging;
 import org.gemini.shared.Event;
 import org.gemini.shared.LocationListener;
 import org.gemini.shared.KeepAliveService;
+import org.gemini.shared.SystemLocationListener;
 
 public final class NotifyService extends KeepAliveService {
   private static final String TAG = Debugging.createTag("NotifyService");
@@ -14,11 +15,12 @@ public final class NotifyService extends KeepAliveService {
   @Override
   public void onCreate() {
     super.onCreate();
-    LocationListener.Configuration config =
-        new LocationListener.Configuration();
-    config.allProviders();
+    SystemLocationListener.Configuration config =
+        new SystemLocationListener.Configuration();
     config.context = getApplicationContext();
-    listener = new LocationListener(config);
+    config.gps();
+    config.intervalMs = 10000;
+    listener = new SystemLocationListener(config);
     listener.onLocationChanged().add(new Event.ParameterRunnable<Location>() {
       @Override
       public void run(Location location) {
@@ -35,7 +37,9 @@ public final class NotifyService extends KeepAliveService {
 
   private void onLocationChanged(Location location) {
     // TODO
-    Log.w(TAG,
-          "X: " + location.getLongitude() + ", Y: " + location.getLatitude());
+    Log.w(TAG, "X: " + location.getLongitude() +
+               ", Y: " + location.getLatitude() +
+               ", accuracy: " + location.getAccuracy() +
+               ", from provider: " + location.getProvider());
   }
 }
