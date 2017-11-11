@@ -12,13 +12,17 @@ public final class NotifyService extends KeepAliveService {
   private static final String TAG = Debugging.createTag("NotifyService");
   private LocationListener listener;
 
+  public NotifyService () {
+    Debugging.catchUnhandledExceptions();
+  }
+
   @Override
   public void onCreate() {
     super.onCreate();
     FusedLocationListener.Configuration config =
         new FusedLocationListener.Configuration();
     config.context = getApplicationContext();
-    listener = new FusedLocationListener(config);
+    listener = FusedLocationListener.create(config);
     listener.onLocationChanged().add(new Event.ParameterRunnable<Location>() {
       @Override
       public void run(Location location) {
