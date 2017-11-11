@@ -22,6 +22,8 @@ public final class NotifyService extends KeepAliveService {
     FusedLocationListener.Configuration config =
         new FusedLocationListener.Configuration();
     config.context = getApplicationContext();
+    config.timeoutMs = 5000;
+    config.gpsPollIntervalMs = 6000;
     listener = FusedLocationListener.create(config);
     listener.onLocationChanged().add(new Event.ParameterRunnable<Location>() {
       @Override
