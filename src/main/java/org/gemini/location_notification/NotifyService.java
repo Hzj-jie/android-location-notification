@@ -20,7 +20,7 @@ public final class NotifyService extends KeepAliveService {
   @Override
   public void onCreate() {
     super.onCreate();
-    LogCollector.start(this);
+    LogCollector.startInDebug(this);
     FusedLocationListener.Configuration config =
         new FusedLocationListener.Configuration();
     config.context = getApplicationContext();

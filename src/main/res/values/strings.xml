@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="edit_notification_title">Edit Notification</string>
+  <string name="new_notification_title">New Notification</string>
+  <string name="save_button">Save</string>
+  <string name="cancel_button">Cancel</string>
+</resources>
