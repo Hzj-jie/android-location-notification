@@ -6,6 +6,7 @@ import org.gemini.shared.Debugging;
 import org.gemini.shared.Event;
 import org.gemini.shared.FusedLocationListener;
 import org.gemini.shared.LocationListener;
+import org.gemini.shared.LogCollector;
 import org.gemini.shared.KeepAliveService;
 
 public final class NotifyService extends KeepAliveService {
@@ -19,6 +20,7 @@ public final class NotifyService extends KeepAliveService {
   @Override
   public void onCreate() {
     super.onCreate();
+    LogCollector.start(this);
     FusedLocationListener.Configuration config =
         new FusedLocationListener.Configuration();
     config.context = getApplicationContext();
